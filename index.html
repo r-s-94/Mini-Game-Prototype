@@ -205,7 +205,7 @@
         if (direction === "right") {
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
-            (objectA.startX = objectA.startX - 2),
+            (objectA.startX = objectA.startX - 1.5),
             objectA.startY,
             objectA.width,
             objectA.height
@@ -216,7 +216,7 @@
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
             objectA.startX,
-            (objectA.startY = objectA.startY - 2),
+            (objectA.startY = objectA.startY - 1.5),
             objectA.width,
             objectA.height
           );
@@ -225,7 +225,7 @@
         if (direction === "left") {
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
-            (objectA.startX = objectA.startX + 2),
+            (objectA.startX = objectA.startX + 1.5),
             objectA.startY,
             objectA.width,
             objectA.height
@@ -236,7 +236,7 @@
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
             objectA.startX,
-            (objectA.startY = objectA.startY + 2),
+            (objectA.startY = objectA.startY + 1.5),
             objectA.width,
             objectA.height
           );
