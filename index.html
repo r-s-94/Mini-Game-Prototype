@@ -7,13 +7,46 @@
 
     <style>
       body {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .description-headline {
+        font-size: 1.5rem;
+      }
+
+      .description {
+        font-size: 1.3rem;
+      }
+
+      .red-dice {
+        width: 15px;
+        height: 15px;
+        background-color: red;
+      }
+
+      button {
+        margin-top: 1rem;
+        font-size: 1rem;
       }
     </style>
   </head>
   <body onkeydown="move(event)" onkeyup="stopMove()">
-    <h1>Würfelkollision</h1>
-    <p>Lass die Würfel kollidieren!.</p>
+    <h1>Mini-Game Würfelkollision</h1>
+    <p class="description-headline">Lass die Würfel kollidieren!.</p>
+    <div class="description">
+      Beschreibung
+      <ol>
+        <li>Mit Computer Pfeiltasten &larr; &uarr; &darr; &rarr;</li>
+        <li>
+          Mit Touch = Finger auf
+          <div class="red-dice"></div>
+          Würfel drücken und nach oben ziehn, unten ziehen, links ziehen oder
+          rechts ziehen
+        </li>
+      </ol>
+    </div>
 
     <canvas
       ontouchmove="move2(event)"
@@ -23,6 +56,7 @@
       height="400"
       style="border: 1px solid #000000"
     ></canvas>
+    <button onclick="restGame()">Reset</button>
 
     <script>
       const canvas = document.getElementById("canvas");
@@ -50,7 +84,7 @@
 
       const objectB = {
         startX: 500,
-        startY: 200,
+        startY: 150,
         width: 100,
         height: 100,
         color: "black",
