@@ -9,8 +9,12 @@
       body {
         text-align: center;
       }
+      .main-div {
+        display: grid;
+        grid-template-columns: auto auto;
+      }
 
-      div {
+      .second-div {
         margin: 0 auto;
         width: 15rem;
         height: 15rem;
@@ -19,16 +23,27 @@
     </style>
   </head>
   <body onkeydown="move(event)" onkeyup="stopMove()">
-    <h1>Wüefelkollision</h1>
-    <p>Lass die Würfel kollidieren!.</p>
-    <canvas
-      id="canvas"
-      width="800"
-      height="400"
-      style="border: 1px solid #000000"
-    ></canvas>
-    <p id="out">Ausgabe</p>
-    <div ontouchmove="move2(event)" onTouchend="stopMove()"></div>
+    <div class="main-div">
+      <div class="first-div">
+        <h1>Würfelkollision</h1>
+        <p>Lass die Würfel kollidieren!.</p>
+        <canvas
+          id="canvas"
+          width="800"
+          height="400"
+          style="border: 1px solid #000000"
+        ></canvas>
+      </div>
+
+      <div>
+        <p id="out">Ausgabe</p>
+        <div
+          ontouchmove="move2(event)"
+          onTouchend="stopMove()"
+          class="second-div"
+        ></div>
+      </div>
+    </div>
 
     <script>
       const canvas = document.getElementById("canvas");
