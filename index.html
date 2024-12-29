@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body onkeydown="move(event)" onkeyup="stopMove()">
+    <h1>Wüefelkollision</h1>
+    <p>Lass die Würfel kollidieren!.</p>
+    <canvas
+      id="canvas"
+      width="800"
+      height="400"
+      style="border: 1px solid #000000"
+    ></canvas>
+
+    <div>
+      <button ontouchstart="move2('37')" ontouchend="stopMove()">
+        &#8592;
+      </button>
+      <button ontouchstart="move2('38')" ontouchend="stopMove()">
+        &#8593;
+      </button>
+      <button ontouchstart="move2('40')" ontouchend="stopMove()">
+        &#8595;
+      </button>
+      <button ontouchstart="move2('39')" ontouchend="stopMove()">
+        &#8594;
+      </button>
+      <button onclick="restGame()">Reset</button>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      let timeControl;
+      let checkCollision = false;
+
+      const canvasProperties = {
+        startX: 0,
+        startY: 0,
+        endX: 800,
+        endY: 400,
+        color: "white",
+      };
+
+      let objectA = {
+        startX: 100,
+        startY: 150,
+        width: 100,
+        height: 100,
+        color: "red",
+      };
+
+      const objectB = {
+        startX: 500,
+        startY: 200,
+        width: 100,
+        height: 100,
+        color: "black",
+      };
+
+      ctx.fillStyle = canvasProperties.color;
+      ctx.fillRect(
+        canvasProperties.startX,
+        canvasProperties.startY,
+        canvasProperties.endX,
+        canvasProperties.endY
+      );
+
+      ctx.fillStyle = objectA.color;
+      ctx.fillRect(
+        objectA.startX,
+        objectA.startY,
+        objectA.width,
+        objectA.height
+      );
+
+      ctx.fillStyle = objectB.color;
+      ctx.fillRect(
+        objectB.startX,
+        objectB.startY,
+        objectB.width,
+        objectB.height
+      );
+
+      function move(event) {
+        /*if (event.keyCode) {
+          alert(event.keyCode);
+        }*/
+
+        /*if (even.keyCode === 13) {
+          draw();
+        }*/
+
+        if (event.keyCode === 37) {
+          timeControl = setInterval(draw("right"), 1);
+        }
+
+        if (event.keyCode === 38) {
+          timeControl = setInterval(draw("up"), 1);
+        }
+
+        if (event.keyCode === 39) {
+          timeControl = setInterval(draw("left"), 1);
+        }
+
+        if (event.keyCode === 40) {
+          timeControl = setInterval(draw("down"), 1);
+        }
+      }
+
+      function move2(number) {
+        if (number === "37") {
+          timeControl = setInterval(draw("right"), 1);
+        }
+
+        if (number === "38") {
+          timeControl = setInterval(draw("up"), 1);
+        }
+
+        if (number === "39") {
+          timeControl = setInterval(draw("left"), 1);
+        }
+
+        if (number === "40") {
+          timeControl = setInterval(draw("down"), 1);
+        }
+      }
+
+      function stopMove() {
+        clearInterval(timeControl);
+      }
+
+      function draw(direction) {
+        ctx.fillStyle = canvasProperties.color;
+        ctx.fillRect(
+          canvasProperties.startX,
+          canvasProperties.startY,
+          canvasProperties.endX,
+          canvasProperties.endY
+        );
+
+        ctx.fillStyle = objectB.color;
+        ctx.fillRect(
+          objectB.startX,
+          objectB.startY,
+          objectB.width,
+          objectB.height
+        );
+
+        /*if (
+        objectA.startX > objectB.startX &&
+            objectA.startX < objectB.startX + objectB.width &&
+            objectA.startY > objectB.startY &&
+            objectA.startY < objectB.startY + objectB.height
+        ) {
+          alert("Kolliosion");
+        }*/
+
+        /*if (objectA.width >= objectB.startX && checkCollision === false) {
+          alert(
+            "Herzlichen Glückwunsch, du hast die Vierecke kollidieren lassen. Das Spiel ist zu Ende."
+          );
+          checkCollision = true;
+        }*/
+
+        if (
+          objectA.startY + objectA.height >= objectB.startX &&
+          checkCollision === false
+        ) {
+          alert(
+            "Herzlichen Glückwunsch, du hast die Vierecke kollidieren lassen. Das Spiel ist zu Ende."
+          );
+          //console.log("objectA.startY:");
+          /*console.log(
+            "objectA.startY + objectA.heigt:",
+            objectA.startX + objectA.height
+          );*/
+          checkCollision = true;
+        }
+
+        if (objectA.startX <= 0) {
+          alert("Sie verlassen das Spiel");
+          restGame();
+        }
+
+        if (objectA.startY <= 0) {
+          alert("Sie verlassen das Spiel");
+          restGame();
+        }
+
+        if (objectA.startY + objectA.height >= canvasProperties.endY) {
+          alert("Sie verlassen das Spiel");
+          restGame();
+        }
+
+        if (objectA.startX + objectA.width >= canvasProperties.endX) {
+          alert("Sie verlassen das Spiel");
+          restGame();
+        }
+
+        if (direction === "right") {
+          ctx.fillStyle = objectA.color;
+          ctx.fillRect(
+            (objectA.startX = objectA.startX - 3),
+            objectA.startY,
+            objectA.width,
+            objectA.height
+          );
+        }
+
+        if (direction === "up") {
+          ctx.fillStyle = objectA.color;
+          ctx.fillRect(
+            objectA.startX,
+            (objectA.startY = objectA.startY - 3),
+            objectA.width,
+            objectA.height
+          );
+        }
+
+        if (direction === "left") {
+          ctx.fillStyle = objectA.color;
+          ctx.fillRect(
+            (objectA.startX = objectA.startX + 3),
+            objectA.startY,
+            objectA.width,
+            objectA.height
+          );
+        }
+
+        if (direction === "down") {
+          ctx.fillStyle = objectA.color;
+          ctx.fillRect(
+            objectA.startX,
+            (objectA.startY = objectA.startY + 3),
+            objectA.width,
+            objectA.height
+          );
+        }
+      }
+
+      /*if (
+        objectA.startX > objectB.startX &&
+        objectA.startX < objectB.startX + objectB.width &&
+        objectA.startY > objectB.startY &&
+        objectA.startY < objectB.startY + objectB.height
+      ) {
+        alert("Kolliosion");
+      }*/
+
+      /*if (objectA.startX > objectB.startY + objectB.height) {
+        alert();
+      }*/
+
+      function restGame() {
+        ctx.fillStyle = canvasProperties.color;
+        ctx.fillRect(0, 0, innerWidth, innerHeight);
+
+        objectA.startX = 100;
+        objectA.startY = 150;
+
+        ctx.fillStyle = objectA.color;
+        ctx.fillRect(objectA.startX, objectA.startY, 100, 100);
+
+        ctx.fillStyle = objectB.color;
+        ctx.fillRect(500, 150, 100, 100);
+
+        checkCollision = false;
+      }
+    </script>
+  </body>
+</html>
