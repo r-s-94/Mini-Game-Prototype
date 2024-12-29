@@ -30,6 +30,8 @@
       const ctx = canvas.getContext("2d");
       let timeControl;
       let checkCollision = false;
+      let prevValueX = 0;
+      let prevValueY = 0;
 
       const canvasProperties = {
         startX: 0,
@@ -110,6 +112,26 @@
         let y = event.touches[0].clientY;
         document.getElementById("out").innerHTML = x;
         document.getElementById("out2").innerHTML = y;
+
+        if (x < prevValueX) {
+          draw("left");
+          prevValueX = x;
+        }
+
+        if (x > prevValueX) {
+          draw("right");
+          prevValueX = x;
+        }
+
+        if (y < prevValueY) {
+          draw("up");
+          prevValueY = y;
+        }
+
+        if (y > prevValueY) {
+          draw("down");
+          prevValueY = y;
+        }
       }
 
       function stopMove() {
