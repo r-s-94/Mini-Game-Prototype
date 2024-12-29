@@ -14,8 +14,7 @@
   <body onkeydown="move(event)" onkeyup="stopMove()">
     <h1>Würfelkollision</h1>
     <p>Lass die Würfel kollidieren!.</p>
-    <p id="out">Ausgabe</p>
-    <p id="out2">Ausgabe</p>
+
     <canvas
       ontouchmove="move2(event)"
       onTouchend="stopMove()"
@@ -206,7 +205,7 @@
         if (direction === "right") {
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
-            (objectA.startX = objectA.startX - 1),
+            (objectA.startX = objectA.startX - 2),
             objectA.startY,
             objectA.width,
             objectA.height
@@ -217,7 +216,7 @@
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
             objectA.startX,
-            (objectA.startY = objectA.startY - 1),
+            (objectA.startY = objectA.startY - 2),
             objectA.width,
             objectA.height
           );
@@ -226,7 +225,7 @@
         if (direction === "left") {
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
-            (objectA.startX = objectA.startX + 1),
+            (objectA.startX = objectA.startX + 2),
             objectA.startY,
             objectA.width,
             objectA.height
@@ -237,7 +236,7 @@
           ctx.fillStyle = objectA.color;
           ctx.fillRect(
             objectA.startX,
-            (objectA.startY = objectA.startY + 1),
+            (objectA.startY = objectA.startY + 2),
             objectA.width,
             objectA.height
           );
