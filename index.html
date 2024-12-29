@@ -114,12 +114,12 @@
         document.getElementById("out2").innerHTML = y;
 
         if (x < prevValueX) {
-          draw("left");
+          draw("right");
           prevValueX = x;
         }
 
         if (x > prevValueX) {
-          draw("right");
+          draw("left");
           prevValueX = x;
         }
 
@@ -164,27 +164,26 @@
           alert("Kolliosion");
         }*/
 
-        /*if (objectA.width >= objectB.startX && checkCollision === false) {
+        if (
+          objectA.startX + objectA.width >= objectB.startX &&
+          checkCollision === false
+        ) {
           alert(
             "Herzlichen Glückwunsch, du hast die Vierecke kollidieren lassen. Das Spiel ist zu Ende."
           );
           checkCollision = true;
-        }*/
+        }
 
-        if (
+        /*if (
           objectA.startY + objectA.height >= objectB.startX &&
           checkCollision === false
         ) {
           alert(
             "Herzlichen Glückwunsch, du hast die Vierecke kollidieren lassen. Das Spiel ist zu Ende."
           );
-          //console.log("objectA.startY:");
-          /*console.log(
-            "objectA.startY + objectA.heigt:",
-            objectA.startX + objectA.height
-          );*/
+         
           checkCollision = true;
-        }
+        }*/
 
         if (objectA.startX <= 0) {
           alert("Sie verlassen das Spiel");
